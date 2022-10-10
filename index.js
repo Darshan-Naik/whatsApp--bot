@@ -1,7 +1,18 @@
 var qrGen = require("qr-image");
 const { Client } = require("whatsapp-web.js");
 const Express = require("express");
+const puppeteer = require("puppeteer");
 const app = Express();
+
+
+var browser;
+
+(async () => {
+  browser = await puppeteer.launch({
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
+})();
 
 const client = new Client();
 
